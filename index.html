@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divulgação de Temas - LPI - Fatec Ipiranga</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome para ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --fatec-bordo: #8B0000; /* Vinho/Bordô institucional */
+            --fatec-bordo-dark: #5c0000;
+            --fatec-bordo-light: #fdf2f2;
+            --fatec-cinza-bg: #f8f9fa;
+            --fatec-cinza-card: #ffffff;
+            --fatec-texto: #333333;
+            --fatec-texto-muted: #666666;
+            --borda-radius: 8px;
+            --sombra-card: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--fatec-cinza-bg);
+            color: var(--fatec-texto);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--fatec-bordo) 0%, var(--fatec-bordo-dark) 100%);
+            color: white;
+            padding: 2.5rem 1rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo-area {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.9;
+            margin-bottom: 0.5rem;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -2rem auto 3rem auto;
+            padding: 0 1rem;
+            position: relative;
+        }
+
+        /* Cards de Estatísticas */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: var(--fatec-cinza-card);
+            padding: 1.5rem;
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-card);
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            border-left: 5px solid var(--fatec-bordo);
+        }
+
+        .stat-icon {
+            font-size: 2rem;
+            color: var(--fatec-bordo);
+            background: var(--fatec-bordo-light);
+            padding: 1rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+        }
+
+        .stat-info h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--fatec-bordo-dark);
+        }
+
+        .stat-info p {
+            font-size: 0.9rem;
+            color: var(--fatec-texto-muted);
+            font-weight: 500;
+        }
+
+        /* Painel de Busca e Filtros */
+        .search-panel {
+            background: var(--fatec-cinza-card);
+            padding: 1.5rem;
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-card);
+            margin-bottom: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--fatec-texto-muted);
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.8rem 1rem 0.8rem 2.8rem;
+            border: 1px solid #ccc;
+            border-radius: var(--borda-radius);
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--fatec-bordo);
+            box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+        }
+
+        .view-options {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-view {
+            background: #e9ecef;
+            border: none;
+            padding: 0.8rem 1.2rem;
+            border-radius: var(--borda-radius);
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--fatec-texto);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .btn-view.active, .btn-view:hover {
+            background: var(--fatec-bordo);
+            color: white;
+        }
+
+        /* Conteúdo Principal (Tabela) */
+        .table-container {
+            background: var(--fatec-cinza-card);
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-card);
+            overflow: hidden;
+            display: block;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: var(--fatec-bordo);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 0.95rem;
+        }
+
+        tr:hover {
+            background-color: var(--fatec-bordo-light);
+        }
+
+        /* Badges de Temas */
+        .badge {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 650;
+        }
+
+        .tema-1 { background: #e3f2fd; color: #0d47a1; }
+        .tema-2 { background: #e8f5e9; color: #1b5e20; }
+        .tema-3 { background: #fff3e0; color: #e65100; }
+        .tema-4 { background: #f3e5f5; color: #4a148c; }
+        .tema-5 { background: #fbe9e7; color: #bf360c; }
+        .tema-nao { background: #ffebee; color: #c62828; font-style: italic; }
+
+        /* Visualização em Blocos/Cards por Tema */
+        .cards-container {
+            display: none;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .group-card {
+            background: var(--fatec-cinza-card);
+            border-radius: var(--borda-radius);
+            box-shadow: var(--sombra-card);
+            padding: 1.5rem;
+            border-top: 4px solid var(--fatec-bordo);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .group-header {
+            margin-bottom: 1rem;
+        }
+
+        .group-header h3 {
+            font-size: 1.1rem;
+            color: var(--fatec-bordo-dark);
+            margin-bottom: 0.3rem;
+        }
+
+        .student-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+        }
+
+        .student-item:last-child {
+            border-bottom: none;
+        }
+
+        .student-ra {
+            font-family: monospace;
+            color: var(--fatec-texto-muted);
+            font-size: 0.85rem;
+            background: #f1f3f5;
+            padding: 0.2rem 0.4rem;
+            border-radius: 4px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: var(--fatec-texto-muted);
+            font-size: 1.1rem;
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--fatec-texto-muted);
+            font-size: 0.9rem;
+            border-top: 1px solid #dee2e6;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .search-panel {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            header h1 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo-area">Fatec Ipiranga • Laboratório de Programação I</div>
+            <h1>Divulgação de Temas de Projetos</h1>
+            <p>Semestres Letivos / Turmas - Acompanhamento de Alunos e Atribuição de Temas</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Cards de Estatísticas -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-info">
+                    <h3 id="total-alunos">35</h3>
+                    <p>Total de Alunos</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-book-open"></i></div>
+                <div class="stat-info">
+                    <h3>5</h3>
+                    <p>Temas Disponíveis</p>
+                </div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                <div class="stat-info">
+                    <h3 id="total-atribuidos">35</h3>
+                    <p>Projetos Atribuídos</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel de Busca e Visualização -->
+        <div class="search-panel">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="Pesquisar por RA, Nome do Aluno ou Tema..." onkeyup="filtrarDados()">
+            </div>
+            <div class="view-options">
+                <button class="btn-view active" onclick="mudarVisao('tabela')" id="btnTabela">
+                    <i class="fas fa-table"></i> Tabela
+                </button>
+                <button class="btn-view" onclick="mudarVisao('cards')" id="btnCards">
+                    <i class="fas fa-th-large"></i> Blocos por Tema
+                </button>
+            </div>
+        </div>
+
+        <!-- Mensagem de Nenhum Resultado -->
+        <div id="noResults" class="no-results">
+            <i class="fas fa-exclamation-circle fa-2x" style="margin-bottom: 1rem; color: var(--fatec-bordo);"></i>
+            <p>Nenhum aluno ou tema encontrado para a busca realizada.</p>
+        </div>
+
+        <!-- Visualização em Tabela -->
+        <div class="table-container" id="tabelaView">
+            <table id="tabelaAlunos">
+                <thead>
+                    <tr>
+                        <th style="width: 20%;">RA</th>
+                        <th style="width: 45%;">Nome do Aluno</th>
+                        <th style="width: 35%;">Tema Atribuído</th>
+                    </tr>
+                </thead>
+                <tbody id="tabelaCorpo">
+                    <!-- Os dados serão injetados via JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Visualização em Blocos/Cards por Tema -->
+        <div class="cards-container" id="cardsView">
+            <!-- Gerado dinamicamente via JS -->
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Fatec Ipiranga - Faculdade de Tecnologia de São Paulo | Laboratório de Programação I</p>
+    </footer>
+
+    <script>
+        // Dados oficiais extraídos da planilha LPI-2026-2alunos.xlsx
+        const dadosAlunos = [
+            { ra: "2040482612010", nome: "ANGELINA NOVAES BUSCH", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612024", nome: "ARTHUR ALENCAR DE SOUSA MOURA", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "2040482612035", nome: "BRUNO MONCAYO DE CAMARGO", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612046", nome: "DANIEL ARNOSTI SEMANA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+            { ra: "2040482612023", nome: "DANIEL DE OLIVEIRA BATISTA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612009", nome: "DAVYSON MATIAS POVIJAN", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
+            { ra: "2040482612030", nome: "FELIPE GARCIA SIMOES", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612045", nome: "FELIPE YUKIO DE FREITAS MARUYAMA", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612017", nome: "GABRIEL CENTENARO SAMPAIO NEUVILLE", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612042", nome: "GABRIEL DE OLIVEIRA", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612005", nome: "GIOVANA YURI NAKAMURA", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612041", nome: "GUILHERME OLIVEIRA PENILLO", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "2040482612034", nome: "HENRIQUE BARROS DE QUEIROZ", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "2040482612031", nome: "HENYAH LIMA DO NASCIMENTO", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612012", nome: "JORGE LUIZ MARQUES ARAUJO", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+            { ra: "2040482612033", nome: "JOYCE RODRIGUES TEOTONIO", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
+            { ra: "2040482612015", nome: "KARINE CRISTINA DE FIGUEIREDO", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "2040482612020", nome: "LUANA BARROS MOLNAR", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612006", nome: "LUCAS AUGUSTO LAMBIASE VIANA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612028", nome: "LUCAS KIATAQUI CAIANA", tema: "Não atribuído" },
+            { ra: "2040482612022", nome: "LUCAS SOUZA BARBOSA DA SILVA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+            { ra: "2040482612036", nome: "MARIA EDUARDA DE ANDRADE SOUZA ALVES", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612014", nome: "MARINA OKUBO IANELLA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+            { ra: "2040482612044", nome: "PAULO HENRIQUE DA SILVA", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
+            { ra: "2040482612016", nome: "PAULO PASCHOALICK FARINELLI LINHARES", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+            { ra: "2040482612011", nome: "PEDRO REALI CARVALHO FRANCISCO", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
+            { ra: "2040482612027", nome: "PEDRO VITOR DE MOURA OLIVEIRA", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612032", nome: "RAFAEL YUJI IKEDA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612039", nome: "SARAH FERNANDES DE ARAUJO", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "2040482612007", nome: "VINICIUS COELHO BERNARDO", tema: "Tema 1 Sistema de Controle de Estoque" },
+            { ra: "2040482612040", nome: "VITORIA PEREIRA DE LUCENA", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "Não Cadastrado", nome: "LAYZ", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "Não Cadastrado", nome: "Vinicius Sanches", tema: "Tema 2 Sistema de Gestão Acadêmica" },
+            { ra: "Não Cadastrado", nome: "Isaac", tema: "Tema 4 Sistema de Biblioteca" },
+            { ra: "Não Cadastrado", nome: "Alef", tema: "Tema 1 Sistema de Controle de Estoque" }
+        ];
+
+        function obterClasseBadge(tema) {
+            if (tema.includes("Tema 1")) return "tema-1";
+            if (tema.includes("Tema 2")) return "tema-2";
+            if (tema.includes("Tema 3")) return "tema-3";
+            if (tema.includes("Tema 4")) return "tema-4";
+            if (tema.includes("Tema 5")) return "tema-5";
+            return "tema-nao";
+        }
+
+        function renderizarTabela(dados) {
+            const tbody = document.getElementById("tabelaCorpo");
+            tbody.innerHTML = "";
+            
+            dados.forEach(aluno => {
+                const tr = document.createElement("tr");
+                const classeBadge = obterClasseBadge(aluno.tema);
+                const raExibicao = aluno.ra === "Não Cadastrado" ? '<span style="color:#999; font-style:italic;">Pendente</span>' : `<span class="student-ra">${aluno.ra}</span>`;
+                
+                tr.innerHTML = `
+                    <td>${raExibicao}</td>
+                    <td><strong>${aluno.nome}</strong></td>
+                    <td><span class="badge ${classeBadge}">${aluno.tema}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderizarCards(dados) {
+            const container = document.getElementById("cardsView");
+            container.innerHTML = "";
+
+            // Agrupar por tema
+            const temasMap = {};
+            dados.forEach(aluno => {
+                if (!temasMap[aluno.tema]) {
+                    temasMap[aluno.tema] = [];
+                }
+                temasMap[aluno.tema].push(aluno);
+            });
+
+            for (const [tema, alunos] of Object.entries(temasMap)) {
+                const classeBadge = obterClasseBadge(tema);
+                const card = document.createElement("div");
+                card.className = "group-card";
+                
+                let alunosHtml = alunos.map(a => `
+                    <div class="student-item">
+                        <span>${a.nome}</span>
+                        <span class="student-ra">${a.ra}</span>
+                    </div>
+                `).join('');
+
+                card.innerHTML = `
+                    <div class="group-header">
+                        <h3><span class="badge ${classeBadge}">${tema}</span></h3>
+                        <p style="font-size: 0.85rem; color: var(--fatec-texto-muted); margin-top: 0.5rem;">Total de alunos: <strong>${alunos.length}</strong></p>
+                    </div>
+                    <div class="group-students">
+                        ${alunosHtml}
+                    </div>
+                `;
+                container.appendChild(card);
+            }
+        }
+
+        function filtrarDados() {
+            const termo = document.getElementById("searchInput").value.toLowerCase().trim();
+            
+            const filtrados = dadosAlunos.filter(aluno => {
+                const matchRa = aluno.ra.toLowerCase().includes(termo);
+                const matchNome = aluno.nome.toLowerCase().includes(termo);
+                const matchTema = aluno.tema.toLowerCase().includes(termo);
+                return matchRa || matchNome || matchTema;
+            });
+
+            const tabelaView = document.getElementById("tabelaView");
+            const cardsView = document.getElementById("cardsView");
+            const noResults = document.getElementById("noResults");
+
+            if (filtrados.length === 0) {
+                tabelaView.style.display = "none";
+                cardsView.style.display = "none";
+                noResults.style.display = "block";
+            } else {
+                noResults.style.display = "none";
+                const modoAtual = document.getElementById("btnTabela").classList.contains("active") ? "tabela" : "cards";
+                
+                if (modoAtual === "tabela") {
+                    tabelaView.style.display = "block";
+                    cardsView.style.display = "none";
+                } else {
+                    tabelaView.style.display = "none";
+                    cardsView.style.display = "grid";
+                }
+                
+                renderizarTabela(filtrados);
+                renderizarCards(filtrados);
+            }
+        }
+
+        function mudarVisao(tipo) {
+            const btnTabela = document.getElementById("btnTabela");
+            const btnCards = document.getElementById("btnCards");
+            const tabelaView = document.getElementById("tabelaView");
+            const cardsView = document.getElementById("cardsView");
+
+            if (tipo === 'tabela') {
+                btnTabela.classList.add("active");
+                btnCards.classList.remove("active");
+                tabelaView.style.display = "block";
+                cardsView.style.display = "none";
+            } else {
+                btnCards.classList.add("active");
+                btnTabela.classList.remove("active");
+                tabelaView.style.display = "none";
+                cardsView.style.display = "grid";
+            }
+        }
+
+        // Inicialização ao carregar a página
+        window.onload = function() {
+            renderizarTabela(dadosAlunos);
+            renderizarCards(dadosAlunos);
+        };
+    </script>
+</body>
+</html>
