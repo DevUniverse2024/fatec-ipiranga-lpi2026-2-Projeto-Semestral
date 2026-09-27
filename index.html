@@ -99,7 +99,7 @@
                 <p>Baixe o modelo oficial do documento de especificação de requisitos e planejamento incremental.</p>
             </div>
             <div>
-                <a href="https://devuniverse2024.github.io/fatec-ipiranga-lpi2026-2-Projeto-Semestral/template-proposta-tecnica.pdf" class="btn-download" download>
+                <a href="template-proposta-tecnica.pdf" class="btn-download" download>
                     <i class="fas fa-download"></i> Baixar Template (PDF)
                 </a>
             </div>
@@ -137,45 +137,10 @@
     </div>
     <footer><p>&copy; 2026 Fatec Ipiranga - Laboratório de Programação I</p></footer>
 
-    <script>
-        const dadosAlunos = [
-            { ra: "2040482612010", nome: "ANGELINA NOVAES BUSCH", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612024", nome: "ARTHUR ALENCAR DE SOUSA MOURA", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "2040482612035", nome: "BRUNO MONCAYO DE CAMARGO", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612046", nome: "DANIEL ARNOSTI SEMANA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
-            { ra: "2040482612023", nome: "DANIEL DE OLIVEIRA BATISTA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612009", nome: "DAVYSON MATIAS POVIJAN", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
-            { ra: "2040482612030", nome: "FELIPE GARCIA SIMOES", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612045", nome: "FELIPE YUKIO DE FREITAS MARUYAMA", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612017", nome: "GABRIEL CENTENARO SAMPAIO NEUVILLE", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612042", nome: "GABRIEL DE OLIVEIRA", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612005", nome: "GIOVANA YURI NAKAMURA", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612041", nome: "GUILHERME OLIVEIRA PENILLO", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "2040482612034", nome: "HENRIQUE BARROS DE QUEIROZ", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "2040482612031", nome: "HENYAH LIMA DO NASCIMENTO", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612012", nome: "JORGE LUIZ MARQUES ARAUJO", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
-            { ra: "2040482612033", nome: "JOYCE RODRIGUES TEOTONIO", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
-            { ra: "2040482612015", nome: "KARINE CRISTINA DE FIGUEIREDO", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "2040482612020", nome: "LUANA BARROS MOLNAR", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612006", nome: "LUCAS AUGUSTO LAMBIASE VIANA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612028", nome: "LUCAS KIATAQUI CAIANA", tema: "Não atribuído" },
-            { ra: "2040482612022", nome: "LUCAS SOUZA BARBOSA DA SILVA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
-            { ra: "2040482612036", nome: "MARIA EDUARDA DE ANDRADE SOUZA ALVES", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612014", nome: "MARINA OKUBO IANELLA", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
-            { ra: "2040482612044", nome: "PAULO HENRIQUE DA SILVA", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
-            { ra: "2040482612016", nome: "PAULO PASCHOALICK FARINELLI LINHARES", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
-            { ra: "2040482612011", nome: "PEDRO REALI CARVALHO FRANCISCO", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
-            { ra: "2040482612027", nome: "PEDRO VITOR DE MOURA OLIVEIRA", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612032", nome: "RAFAEL YUJI IKEDA", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612039", nome: "SARAH FERNANDES DE ARAUJO", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "2040482612007", nome: "VINICIUS COELHO BERNARDO", tema: "Tema 1 Sistema de Controle de Estoque" },
-            { ra: "2040482612040", nome: "VITORIA PEREIRA DE LUCENA", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "Não Cadastrado", nome: "LAYZ", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "Não Cadastrado", nome: "Vinicius Sanches", tema: "Tema 2 Sistema de Gestão Acadêmica" },
-            { ra: "Não Cadastrado", nome: "Isaac", tema: "Tema 4 Sistema de Biblioteca" },
-            { ra: "Não Cadastrado", nome: "Alef", tema: "Tema 1 Sistema de Controle de Estoque" }
-        ];
+    <!-- Importação do arquivo de dados externo -->
+    <script src="dados.js"></script>
 
+    <script>
         function obterClasseBadge(tema) {
             if (tema.includes("Tema 1")) return "tema-1";
             if (tema.includes("Tema 2")) return "tema-2";
