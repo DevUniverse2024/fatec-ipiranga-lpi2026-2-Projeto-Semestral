@@ -7,6 +7,7 @@ const dadosAlunos = [
     { ra: "2040482612023", nome: "D. B.", tema: "Tema 2 Sistema de Gestão Acadêmica" },
     { ra: "2040482612009", nome: "D. P.", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
     { ra: "2040482612046", nome: "D. S.", tema: "Tema 5 Sistema de Gestão de Frota e Entregas" },
+    { ra: "2040482523031", nome: "F. S.", tema: "Tema 3 Sistema de Controle Financeiro Pessoal" },
     { ra: "2040482612045", nome: "F. M.", tema: "Tema 1 Sistema de Controle de Estoque" },
     { ra: "2040482612030", nome: "F. S.", tema: "Tema 2 Sistema de Gestão Acadêmica" },
     { ra: "2040482612017", nome: "G. N.", tema: "Tema 1 Sistema de Controle de Estoque" },
